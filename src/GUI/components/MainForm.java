@@ -106,10 +106,14 @@ public class MainForm extends javax.swing.JPanel {
         m5 = new javax.swing.JPanel();
         m6 = new javax.swing.JPanel();
 
-        setBackground(new java.awt.Color(255, 255, 255));
+        setBackground(new java.awt.Color(33, 33, 33));
         setMinimumSize(new java.awt.Dimension(980, 640));
         setPreferredSize(new java.awt.Dimension(980, 640));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jPanel3.setBackground(new java.awt.Color(33, 33, 33));
+
+        containM.setBackground(new java.awt.Color(33, 33, 33));
 
         m1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         m1.add(thongKe2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 980, 640));
@@ -153,7 +157,7 @@ public class MainForm extends javax.swing.JPanel {
                 .addComponent(containM, javax.swing.GroupLayout.PREFERRED_SIZE, 675, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -40, 980, 680));
+        add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -28, 980, 680));
     }// </editor-fold>//GEN-END:initComponents
 
 

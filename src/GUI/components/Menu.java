@@ -6,6 +6,7 @@ package GUI.components;
 
 import GUI.App;
 import GUI.Home;
+import java.awt.Color;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
@@ -147,6 +148,17 @@ public class Menu extends javax.swing.JPanel {
     public void setPanelRadius8(PanelRadius panelRadius8) {
         this.panelRadius8 = panelRadius8;
     }
+    public void setColorUnOnClick(){
+      this.panelRadius1.setBackground(new Color(102, 102, 102));
+            this.panelRadius2.setBackground(new Color(102, 102, 102));
+      this.panelRadius3.setBackground(new Color(102, 102, 102));
+      this.panelRadius4.setBackground(new Color(102, 102, 102));
+      this.panelRadius5.setBackground(new Color(102, 102, 102));
+      this.panelRadius6.setBackground(new Color(102, 102, 102));
+      this.panelRadius7.setBackground(new Color(102, 102, 102));
+     
+
+    }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -156,9 +168,9 @@ public class Menu extends javax.swing.JPanel {
         jLabel6 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         panelRadius1 = new GUI.components.PanelRadius();
-        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
         panelRadius2 = new GUI.components.PanelRadius();
-        label1 = new java.awt.Label();
+        jLabel2 = new javax.swing.JLabel();
         panelRadius3 = new GUI.components.PanelRadius();
         panelRadius4 = new GUI.components.PanelRadius();
         panelRadius5 = new GUI.components.PanelRadius();
@@ -191,10 +203,27 @@ public class Menu extends javax.swing.JPanel {
         panelRadius1.setBackground(new java.awt.Color(255, 156, 39));
         panelRadius1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/Dashboard.png"))); // NOI18N
+        jLabel3.setText("Thống Kê");
+        jLabel3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel3.setIconTextGap(12);
+        jLabel3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel3MouseClicked(evt);
+            }
+        });
+        panelRadius1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 180, 35));
+
+        jPanel2.add(panelRadius1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 200, 35));
+
+        panelRadius2.setBackground(new java.awt.Color(102, 102, 102));
+        panelRadius2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/Dashboard.png"))); // NOI18N
-        jLabel2.setText("Thống Kê");
+        jLabel2.setText("Khách hàng");
         jLabel2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLabel2.setIconTextGap(12);
         jLabel2.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -202,22 +231,7 @@ public class Menu extends javax.swing.JPanel {
                 jLabel2MouseClicked(evt);
             }
         });
-        panelRadius1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 180, 35));
-
-        jPanel2.add(panelRadius1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 200, 35));
-
-        panelRadius2.setBackground(new java.awt.Color(102, 102, 102));
-        panelRadius2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        label1.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
-        label1.setForeground(new java.awt.Color(255, 255, 255));
-        label1.setText("Tài Khoản");
-        label1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                label1MouseClicked(evt);
-            }
-        });
-        panelRadius2.add(label1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 180, 35));
+        panelRadius2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 180, 35));
 
         jPanel2.add(panelRadius2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 200, 35));
 
@@ -262,12 +276,10 @@ public class Menu extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
-       Home.homeElement.getMainFrom().setSelectedIndex(0);
-    }//GEN-LAST:event_jLabel2MouseClicked
-
-    private void label1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_label1MouseClicked
        Home.homeElement.getMainFrom().setSelectedIndex(1);
-    }//GEN-LAST:event_label1MouseClicked
+       setColorUnOnClick();
+       this.panelRadius2.setBackground(new Color(255, 156, 39));
+    }//GEN-LAST:event_jLabel2MouseClicked
 
     private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
         System.out.println("home close window run ");
@@ -276,15 +288,21 @@ public class Menu extends javax.swing.JPanel {
        App.routes();
     }//GEN-LAST:event_jLabel1MouseClicked
 
+    private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
+        Home.homeElement.getMainFrom().setSelectedIndex(0);
+       setColorUnOnClick();
+       this.panelRadius1.setBackground(new Color(255, 156, 39));
+    }//GEN-LAST:event_jLabel3MouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private java.awt.Label label1;
     private GUI.components.PanelRadius panelRadius1;
     private GUI.components.PanelRadius panelRadius2;
     private GUI.components.PanelRadius panelRadius3;
