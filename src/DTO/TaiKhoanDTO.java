@@ -10,14 +10,13 @@ package DTO;
  */
 public class TaiKhoanDTO {
 
-    public TaiKhoanDTO(String userName1, String passWord1, String role1, String Email1, String sdt1, String status_sdt) {
-    }
-    public String userName;
-    public String passWord;
-    public String role;
-    public String Email;
-    public String sdt;
-    public String status_std;
+   
+     private String userName;
+    private String passWord;
+    private String role;
+    private String Email;
+  
+  
 
     public TaiKhoanDTO() {
 
@@ -26,13 +25,7 @@ public class TaiKhoanDTO {
     public void TaiKhoanDTO(){
         
     }
-    public void TaiKHoanDTO(String userName,String passWord,String role,String Email,String sdt,String status_std){
-      this.userName = userName;
-      this.passWord = passWord;
-      this.role= role;
-      this.sdt = sdt;
-      this.status_std = status_std;
-    }
+   
     // Setter methods
     public void setUserName(String userName) {
         this.userName = userName;
@@ -50,13 +43,9 @@ public class TaiKhoanDTO {
         this.Email = Email;
     }
 
-    public void setSdt(String sdt) {
-        this.sdt = sdt;
-    }
+  
 
-    public void setStatus_std(String status_std) {
-        this.status_std = status_std;
-    }
+   
 
     // Getter methods
     public String getUserName() {
@@ -75,12 +64,7 @@ public class TaiKhoanDTO {
         return Email;
     }
 
-    public String getSdt() {
-        return sdt;
-    }
+   
 
-    public String getStatus_std() {
-        return status_std;
-    }
-  
+   
 }

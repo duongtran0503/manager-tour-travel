@@ -172,6 +172,7 @@ public class Menu extends javax.swing.JPanel {
         panelRadius2 = new GUI.components.PanelRadius();
         jLabel2 = new javax.swing.JLabel();
         panelRadius3 = new GUI.components.PanelRadius();
+        jLabel4 = new javax.swing.JLabel();
         panelRadius4 = new GUI.components.PanelRadius();
         panelRadius5 = new GUI.components.PanelRadius();
         panelRadius6 = new GUI.components.PanelRadius();
@@ -235,8 +236,21 @@ public class Menu extends javax.swing.JPanel {
 
         jPanel2.add(panelRadius2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 200, 35));
 
-        panelRadius3.setBackground(new java.awt.Color(255, 255, 255));
+        panelRadius3.setBackground(new java.awt.Color(102, 102, 102));
         panelRadius3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel4.setText("Tour Du Lịch");
+        jLabel4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel4.setIconTextGap(12);
+        jLabel4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel4MouseClicked(evt);
+            }
+        });
+        panelRadius3.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 180, 35));
+
         jPanel2.add(panelRadius3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, 200, 35));
 
         panelRadius4.setBackground(new java.awt.Color(255, 255, 255));
@@ -294,11 +308,18 @@ public class Menu extends javax.swing.JPanel {
        this.panelRadius1.setBackground(new Color(255, 156, 39));
     }//GEN-LAST:event_jLabel3MouseClicked
 
+    private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
+        Home.homeElement.getMainFrom().setSelectedIndex(2);
+       setColorUnOnClick();
+       this.panelRadius3.setBackground(new Color(255, 156, 39));
+    }//GEN-LAST:event_jLabel4MouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;

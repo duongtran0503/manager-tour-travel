@@ -21,25 +21,26 @@ public class TaiKhoanDAL implements  InterFaceDAL<TaiKhoanDTO>{
         public ArrayList<TaiKhoanDTO> getAll(){
             
             ArrayList<TaiKhoanDTO> list = new ArrayList<>();
-            try {
-              Connection con = db.connectDb();
-              String sql = "SELECT * FROM TAI_KHOAN";
-               PreparedStatement pst = con.prepareStatement(sql);
-            ResultSet rs = pst.executeQuery();
-                while (rs.next()) {
-                  String userName = rs.getString("userName");
-                 String passWord = rs.getString("passWord");
-                 String role = rs.getString("role");
-                 String Email =rs.getString("Email");
-                 String sdt = rs.getString("sdt");
-                  String status_sdt= rs.getString("status_sdt");
-                 TaiKhoanDTO user = new TaiKhoanDTO(userName,passWord,role,Email,sdt,status_sdt);
-                 list.add(user);
-               
-            }
-            }
-            catch(SQLException e){
-            }
+//            try {
+//              Connection con = db.connectDb();
+//              String sql = "SELECT * FROM TAI_KHOAN";
+//               PreparedStatement pst = con.prepareStatement(sql);
+//            ResultSet rs = pst.executeQuery();
+//                while (rs.next()) {
+//                  String userName = rs.getString("userName");
+//                 String passWord = rs.getString("passWord");
+//                 String role = rs.getString("role");
+//                 String Email =rs.getString("Email");
+//                 String sdt = rs.getString("sdt");
+//                  String status_sdt= rs.getString("status_sdt");
+//                   // lấy lớp NguoiDungDTO và tạo đôi tượng ->gắn giá trị cho đối tượng
+//                                  
+//                 list.add(user);
+//               
+//            }
+//            }
+//            catch(SQLException e){
+//            }
             return list;
           
     }

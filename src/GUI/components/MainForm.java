@@ -100,8 +100,9 @@ public class MainForm extends javax.swing.JPanel {
         m1 = new javax.swing.JPanel();
         thongKe2 = new GUI.panel.ThongKe();
         m2 = new javax.swing.JPanel();
-        nguoiDung1 = new GUI.panel.NguoiDung();
+        nguoiDung2 = new GUI.panel.NguoiDung();
         m3 = new javax.swing.JPanel();
+        tourDuLich1 = new GUI.panel.TourDuLich();
         m4 = new javax.swing.JPanel();
         m5 = new javax.swing.JPanel();
         m6 = new javax.swing.JPanel();
@@ -122,23 +123,13 @@ public class MainForm extends javax.swing.JPanel {
 
         m2.setBackground(new java.awt.Color(255, 255, 255));
         m2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        nguoiDung1.setBackground(new java.awt.Color(255, 51, 51));
-
-        javax.swing.GroupLayout nguoiDung1Layout = new javax.swing.GroupLayout(nguoiDung1);
-        nguoiDung1.setLayout(nguoiDung1Layout);
-        nguoiDung1Layout.setHorizontalGroup(
-            nguoiDung1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 980, Short.MAX_VALUE)
-        );
-        nguoiDung1Layout.setVerticalGroup(
-            nguoiDung1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 640, Short.MAX_VALUE)
-        );
-
-        m2.add(nguoiDung1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 980, 640));
+        m2.add(nguoiDung2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 0, -1, -1));
 
         containM.addTab("tab2", m2);
+
+        m3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        m3.add(tourDuLich1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 980, 640));
+
         containM.addTab("tab3", m3);
         containM.addTab("tab4", m4);
         containM.addTab("tab5", m5);
@@ -170,7 +161,8 @@ public class MainForm extends javax.swing.JPanel {
     private javax.swing.JPanel m4;
     private javax.swing.JPanel m5;
     private javax.swing.JPanel m6;
-    private GUI.panel.NguoiDung nguoiDung1;
+    private GUI.panel.NguoiDung nguoiDung2;
     private GUI.panel.ThongKe thongKe2;
+    private GUI.panel.TourDuLich tourDuLich1;
     // End of variables declaration//GEN-END:variables
 }
