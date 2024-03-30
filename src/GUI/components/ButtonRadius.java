@@ -67,37 +67,31 @@ public class ButtonRadius extends JButton {
         //  Init Color
 
     
-        colorOver = new Color(179, 250, 160);
-        colorClick = new Color(152, 184, 144);
+        colorOver = new Color(255, 255, 255);
+        colorClick = new Color(255, 255, 255);
         borderColor = new Color(30, 136, 56);
         setContentAreaFilled(false);
         //  Add event mouse
         addMouseListener(new MouseAdapter() {
             @Override
             public void mouseEntered(MouseEvent me) {
-                setBackground(colorOver);
-                over = true;
+               
             }
 
             @Override
             public void mouseExited(MouseEvent me) {
-                setBackground(color);
-                over = false;
+              
 
             }
 
             @Override
             public void mousePressed(MouseEvent me) {
-                setBackground(colorClick);
+               
             }
 
             @Override
             public void mouseReleased(MouseEvent me) {
-                if (over) {
-                    setBackground(colorOver);
-                } else {
-                    setBackground(color);
-                }
+               
             }
         });
        

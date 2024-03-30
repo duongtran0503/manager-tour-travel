@@ -8,6 +8,7 @@ package GUI.components;
  *
  * @author ACER
  */
+import GUI.App;
 public class Header extends javax.swing.JPanel {
 
     /**
@@ -15,8 +16,11 @@ public class Header extends javax.swing.JPanel {
      */
     public Header() {
         initComponents();
+        setTitleNameUserHeader();
     }
-
+  private void  setTitleNameUserHeader(){
+         this.jLabel2.setText(App.status.getUserName());
+  }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

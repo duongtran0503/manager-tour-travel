@@ -4,6 +4,10 @@
  */
 package GUI.panel;
 
+import java.awt.Color;
+import java.awt.Dimension;
+import javax.swing.JScrollPane;
+
 /**
  *
  * @author ACER
@@ -15,8 +19,21 @@ public class ThongKe extends javax.swing.JPanel {
      */
     public ThongKe() {
         initComponents();
+        jScrollPane1.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+         setWidtScroll();
+            jScrollPane1.getVerticalScrollBar().setUnitIncrement(16);
+            jScrollPane1.getViewport().setBackground(Color.BLACK);
     }
+    private void setWidtScroll(){
+     int verticalScrollBarWidthCoefficient =2 ;
 
+jScrollPane1.getVerticalScrollBar().setPreferredSize(new Dimension(
+        (int) jScrollPane1.getVerticalScrollBar().getPreferredSize()
+                .getWidth() / verticalScrollBarWidthCoefficient,
+        (int) jScrollPane1.getVerticalScrollBar().getPreferredSize().getHeight()
+     
+));
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -26,17 +43,115 @@ public class ThongKe extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jPanel1 = new javax.swing.JPanel();
+        panelRadius1 = new GUI.components.PanelRadius();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        panelRadius2 = new GUI.components.PanelRadius();
         jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        panelRadius3 = new GUI.components.PanelRadius();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        panelRadius4 = new GUI.components.PanelRadius();
+        jLabel7 = new javax.swing.JLabel();
+        panelRadius5 = new GUI.components.PanelRadius();
+        jLabel8 = new javax.swing.JLabel();
+        panelRadius6 = new GUI.components.PanelRadius();
+        jLabel9 = new javax.swing.JLabel();
 
-        setBackground(new java.awt.Color(102, 102, 102));
+        setBackground(new java.awt.Color(255, 255, 255));
+        setPreferredSize(new java.awt.Dimension(980, 660));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setText("Thống kê");
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 290, -1, -1));
+        jPanel1.setPreferredSize(new java.awt.Dimension(980, 1000));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        panelRadius1.setBackground(new java.awt.Color(255, 255, 255));
+        panelRadius1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel4.setText("Số lược đặt tour");
+        panelRadius1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
+
+        jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel6.setText("350 lược đặt tour");
+        panelRadius1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 60, 130, -1));
+
+        jPanel1.add(panelRadius1, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 50, 270, 120));
+
+        panelRadius2.setBackground(new java.awt.Color(255, 255, 255));
+        panelRadius2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel1.setText("Tổng doanh thu");
+        panelRadius2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, -1, -1));
+
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel2.setText("100.000.000 vnd");
+        panelRadius2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 50, 180, 30));
+
+        jPanel1.add(panelRadius2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 50, 270, 120));
+
+        panelRadius3.setBackground(new java.awt.Color(255, 255, 255));
+        panelRadius3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel3.setText("Số khách hàng hiện tại");
+        panelRadius3.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 110, -1));
+
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel5.setText("1000 người");
+        panelRadius3.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 60, -1, -1));
+
+        jPanel1.add(panelRadius3, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 50, 270, 120));
+
+        panelRadius4.setBackground(new java.awt.Color(255, 255, 255));
+        panelRadius4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel7.setText(" Thông Kê doanh thu theo thấng");
+        panelRadius4.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, -1, -1));
+
+        jPanel1.add(panelRadius4, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 210, 860, 360));
+
+        panelRadius5.setBackground(new java.awt.Color(255, 255, 255));
+        panelRadius5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel8.setText("Top tour được đặt đi nhiều ");
+        panelRadius5.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, -1, -1));
+
+        jPanel1.add(panelRadius5, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 600, 570, 350));
+
+        panelRadius6.setBackground(new java.awt.Color(255, 255, 255));
+        panelRadius6.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel9.setText("Thông báo lỗi hệ thống");
+        panelRadius6.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, -1, -1));
+
+        jPanel1.add(panelRadius6, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 600, 260, 350));
+
+        jScrollPane1.setViewportView(jPanel1);
+
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 970, 660));
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private GUI.components.PanelRadius panelRadius1;
+    private GUI.components.PanelRadius panelRadius2;
+    private GUI.components.PanelRadius panelRadius3;
+    private GUI.components.PanelRadius panelRadius4;
+    private GUI.components.PanelRadius panelRadius5;
+    private GUI.components.PanelRadius panelRadius6;
     // End of variables declaration//GEN-END:variables
 }

@@ -12,7 +12,7 @@ public class Database {
          try {
              DriverManager.registerDriver( new com.mysql.cj.jdbc.Driver());
               //Cac thong so
-            String url = "jdbc:mySQL://127.0.0.1:3306/travel_tuor?useUnicode=true&characterEncoding=UTF8";
+            String url = "jdbc:mySQL://127.0.0.1:3306/travel_tour?useUnicode=true&characterEncoding=UTF8";
             String userName = "root";
             String password = "";
             //Tao ket noi 

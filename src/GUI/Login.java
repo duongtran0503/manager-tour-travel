@@ -4,6 +4,7 @@
  */
 package GUI;
 
+import BUS.ObjectType;
 import BUS.TaiKhoanBUS;
 import DTO.TaiKhoanDTO;
 import java.awt.Color;
@@ -95,15 +96,16 @@ public class Login extends javax.swing.JFrame {
                     }
                     String PassWrodString = new String(jPasswordField1.getPassword());
                     System.out.println(jTextField1.getText()+ " "+ PassWrodString);
-                    user.passWord = PassWrodString;
-                    user.Email = jTextField1.getText();
-                    TaiKhoanBUS.ErrorMessage errorMessage =  tkbus.checkAcount(user);
+                     user.setPassWord(PassWrodString);
+                     user.setEmail( jTextField1.getText());
+                    ObjectType.CheckErrorLogin errorMessage =  tkbus.checkAcount(user);
                    if( !errorMessage.getStatus()){
                      jLabel4.setText(errorMessage.getMessage());
                              
                    } else {
                      App.status = user;
                      App.routes();
+                     dispose();
                    }
                 });
       }
