@@ -7,6 +7,7 @@ package GUI;
 import java.awt.Color;
 import javax.swing.ImageIcon;
 import javax.swing.JTabbedPane;
+import raven.toast.Notifications;
 
 /**
  *
@@ -22,12 +23,26 @@ public class Home extends javax.swing.JFrame {
        getContentPane().setBackground(Color.black);
        this.setIconImage(img.getImage());
        this.pack();
+        initToast();
+       setNameUser();
+       
     }
   // lấy main from 
    public JTabbedPane getMainFrom(){
     return this.mainForm1.getContainM();
    }
-  
+   // toast config
+   private void initToast(){
+        Notifications.getInstance().setJFrame(this);
+   }
+  public void showToast(String message){
+    Notifications.getInstance().show(Notifications.Type.SUCCESS,Notifications.Location.TOP_RIGHT,message);
+  }
+  // controll layout
+  private void setNameUser(){
+   this.header1.getTitle().setText(App.status.getUserName());
+      System.out.println(App.status.getUserName());
+  }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
