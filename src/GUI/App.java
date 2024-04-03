@@ -14,8 +14,10 @@ import DTO.TaiKhoanDTO;
  */
 public class App {
     public static TaiKhoanDTO status =null;
-  
-    public void App(){}
+ 
+    public void App(){
+         
+}
     /*
      user --> login -> status = info user -> routes
       -- routes
@@ -35,10 +37,12 @@ public class App {
           Home home = new Home();
            home.setVisible(true);
            home.setLocationRelativeTo(null);
+           home.showToast("Đăng nhập thành công");
       }
     }
    
     public static void main(String[] args) {
       routes();
-    }
+    
+}
 }

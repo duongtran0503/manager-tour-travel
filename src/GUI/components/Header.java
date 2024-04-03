@@ -9,6 +9,7 @@ package GUI.components;
  * @author ACER
  */
 import GUI.App;
+import javax.swing.JLabel;
 public class Header extends javax.swing.JPanel {
 
     /**
@@ -20,6 +21,9 @@ public class Header extends javax.swing.JPanel {
     }
   private void  setTitleNameUserHeader(){
          this.jLabel2.setText(App.status.getUserName());
+  }
+  public  JLabel getTitle(){
+   return this.jLabel2;
   }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -70,4 +74,6 @@ public class Header extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JSeparator jSeparator1;
     // End of variables declaration//GEN-END:variables
+
+   
 }

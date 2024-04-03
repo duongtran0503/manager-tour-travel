@@ -77,7 +77,7 @@ ResultSet rs = statement.executeQuery(); // -> thuc thi truy van
  TaiKhoanDTO user = new TaiKhoanDTO();
 if (rs.next()) {
     user.setEmail(rs.getString("email"));
-    user.setUserName(rs.getString("name"));
+    user.setUserName(rs.getString(2));
     user.setRole(rs.getString(7));
     user.setPassWord(rs.getString(3));
 }

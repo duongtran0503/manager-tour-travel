@@ -45,6 +45,8 @@ public class TourDuLich extends javax.swing.JPanel {
         jTable1 = new javax.swing.JTable();
 
         setBackground(new java.awt.Color(255, 255, 255));
+        setMinimumSize(new java.awt.Dimension(980, 186));
+        setPreferredSize(new java.awt.Dimension(980, 572));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         panelRadius1.setForeground(new java.awt.Color(255, 255, 255));
@@ -68,21 +70,18 @@ public class TourDuLich extends javax.swing.JPanel {
         buttonRadius1.setRadius(10);
         panelRadius2.add(buttonRadius1, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 0, 110, 40));
 
-        panelRadius1.add(panelRadius2, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 5, 490, 40));
+        panelRadius1.add(panelRadius2, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 5, 490, 40));
 
-        add(panelRadius1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, 940, 50));
+        add(panelRadius1, new org.netbeans.lib.awtextra.AbsoluteConstraints(5, 20, 970, 50));
 
         panelRadius3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        panelRadius3.add(tabeButtonAction2, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 0, 510, -1));
+        panelRadius3.add(tabeButtonAction2, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 5, 510, -1));
 
-        add(panelRadius3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 110, 940, 50));
+        add(panelRadius3, new org.netbeans.lib.awtextra.AbsoluteConstraints(5, 80, 970, 50));
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+
             },
             new String [] {
                 "", "hình  ảnh", "Tên", "địa chỉ", "Giá"
@@ -104,8 +103,11 @@ public class TourDuLich extends javax.swing.JPanel {
             }
         });
         jScrollPane1.setViewportView(jTable1);
+        if (jTable1.getColumnModel().getColumnCount() > 0) {
+            jTable1.getColumnModel().getColumn(0).setPreferredWidth(50);
+        }
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 170, 930, -1));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, 960, -1));
     }// </editor-fold>//GEN-END:initComponents
 
 

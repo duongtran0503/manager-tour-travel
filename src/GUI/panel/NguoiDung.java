@@ -61,8 +61,8 @@ public class NguoiDung extends javax.swing.JPanel {
 
         panelRadius1.add(panelRadius2, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 5, 490, 40));
 
-        add(panelRadius1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 940, 50));
-        add(panelRadius3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, 940, 50));
+        add(panelRadius1, new org.netbeans.lib.awtextra.AbsoluteConstraints(5, 20, 970, 50));
+        add(panelRadius3, new org.netbeans.lib.awtextra.AbsoluteConstraints(5, 80, 970, 50));
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -78,7 +78,7 @@ public class NguoiDung extends javax.swing.JPanel {
         ));
         jScrollPane1.setViewportView(jTable1);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, 940, 490));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, 960, 490));
     }// </editor-fold>//GEN-END:initComponents
 
 
