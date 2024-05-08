@@ -3,20 +3,15 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/JAVA/test/src/DTO/Orders.java</file>
-            <file>file:/D:/JAVA/test/src/GUI/Login.java</file>
-            <file>file:/D:/JAVA/test/src/DAL/TaiKhoanDAL.java</file>
-            <file>file:/D:/JAVA/test/src/BUS/ObjectType.java</file>
-            <file>file:/D:/JAVA/test/src/DAL/ThongKeDAL.java</file>
-            <file>file:/D:/JAVA/test/src/GUI/panel/TourDuLich.java</file>
-            <file>file:/D:/JAVA/test/src/GUI/components/MainForm.java</file>
-            <file>file:/D:/JAVA/test/src/BUS/TaiKhoanBUS.java</file>
-            <file>file:/D:/JAVA/test/src/GUI/Home.java</file>
-            <file>file:/D:/JAVA/test/src/DTO/TaiKhoanDTO.java</file>
-            <file>file:/D:/JAVA/test/src/GUI/components/Header.java</file>
-            <file>file:/D:/JAVA/test/src/GUI/components/FormOrderTour.java</file>
-            <file>file:/D:/JAVA/test/src/DTO/User.java</file>
-            <file>file:/D:/JAVA/test/src/GUI/components/CartItem.java</file>
+            <file>file:/D:/JAVA/project-preventive/manager-tour-travel/src/DAL/QLTourDAL.java</file>
+            <file>file:/D:/JAVA/project-preventive/manager-tour-travel/src/DTO/Orders.java</file>
+            <file>file:/D:/JAVA/project-preventive/manager-tour-travel/src/GUI/components/FormEditTour.java</file>
+            <file>file:/D:/JAVA/project-preventive/manager-tour-travel/src/DTO/Tour.java</file>
+            <file>file:/D:/JAVA/project-preventive/manager-tour-travel/src/GUI/Home.java</file>
+            <file>file:/D:/JAVA/project-preventive/manager-tour-travel/src/GUI/panel/TourDuLich.java</file>
+            <file>file:/D:/JAVA/project-preventive/manager-tour-travel/src/GUI/components/FormOrderTour.java</file>
+            <file>file:/D:/JAVA/project-preventive/manager-tour-travel/src/GUI/components/CartItem.java</file>
+            <file>file:/D:/JAVA/project-preventive/manager-tour-travel/src/GUI/components/MainForm.java</file>
         </group>
     </open-files>
 </project-private>

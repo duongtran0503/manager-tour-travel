@@ -110,10 +110,7 @@ public class TourDuLich extends javax.swing.JPanel  {
                form.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
                Tour tourEdit  = cart.getTour();
                form.setTour(tourEdit);
-               form.setValueEdit(tourEdit.getTitle(),tourEdit.getAddress()
-                               
-  , tourEdit.getPrice_one_person(),tourEdit.getDestination_description(), tourEdit.getTime_book_start(),tourEdit.getTime_book_end(), tourEdit.getExpense(),tourEdit.getImgUrl(),tourEdit
-               .getQuantity());
+               form.setValueEdit(tourEdit);
            }
            
         });
@@ -124,18 +121,13 @@ public class TourDuLich extends javax.swing.JPanel  {
                  JOptionPane.showMessageDialog(null, "tour đã hết lược đặt chuyển đi");
                 } else {
                  FormOrderTour form =new FormOrderTour();
-                   CartItem cartTemp = cart;
-              if ( cartTemp.getButtonDelete() != null && cartTemp.getButtonEdit() != null && cartTemp.getButtonOrder() != null) {
-    cartTemp.getButtonDelete().setVisible(false);
-    cartTemp.getButtonEdit().setVisible(false);
-    cartTemp.getButtonOrder().setVisible(false);}
-             
+              form.setInfoTourOrder(cart.getTour());
                
               
              
     form.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
   
-    form.getInFoContainer().add(cartTemp);
+  
     form.setVisible(true);
     form.setLocationRelativeTo(null);
                 
@@ -210,9 +202,7 @@ public class TourDuLich extends javax.swing.JPanel  {
                form.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
                Tour tourEdit  = cart.getTour();
                form.setTour(tourEdit);
-               form.setValueEdit(tourEdit.getTitle(),tourEdit.getAddress()
-                               
-  , tourEdit.getPrice_one_person(),tourEdit.getDestination_description(), tourEdit.getTime_book_start(),tourEdit.getTime_book_end(), tourEdit.getExpense(),tourEdit.getImgUrl(),tourEdit.getQuantity());
+               form.setValueEdit(tourEdit);
            }
            
         });

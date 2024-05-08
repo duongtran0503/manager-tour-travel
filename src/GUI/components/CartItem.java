@@ -83,7 +83,7 @@ public class CartItem extends javax.swing.JPanel {
      return   this.jLabel2.getText();
     }
     public void setAddress(String Address){
-     dateEnd.setText(Address);
+     jLabel5.setText(Address);
     }
     public void setPrice(String price) {
      jLabel1.setText(price);
