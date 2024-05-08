@@ -21,7 +21,7 @@ public class Home extends javax.swing.JFrame {
         homeElement = this;
         initComponents();
       
-       ImageIcon img = new ImageIcon("D:\\JAVA\\test\\src\\image\\Frame.png");
+       ImageIcon img = new ImageIcon(App.globalPathApp+"\\image\\Frame.png");
        getContentPane().setBackground(Color.black);
        this.setIconImage(img.getImage());
        this.pack();

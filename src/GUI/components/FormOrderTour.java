@@ -4,11 +4,21 @@
  */
 package GUI.components;
 
+import BUS.CheckError;
+import BUS.RandomIdGenerator;
+import DTO.Orders;
+import DTO.Tour;
+import GUI.App;
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
+import java.util.Date;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-
+import java.text.NumberFormat;
+import java.util.Locale;
 /**
  *
  * @author ACER
@@ -18,10 +28,156 @@ public class FormOrderTour extends javax.swing.JFrame {
     /**
      * Creates new form FormOrderTour
      */
+    private Tour tourOrder;
+    private Orders order =new Orders();
+      private boolean isValid = false;
     public FormOrderTour() {
         initComponents();
         addEventButtonCancel();
+      setInforOrder();
+        setEventQuantityInput();
+        setEventInputNameCustomer();
+        setEventInputPhoneCustomer();
+        setEventInputAddressCustomer();
     }
+private String formatPrice(Double price) {
+    Locale locale = new Locale("vi", "VN");
+    NumberFormat currencyFormatter = NumberFormat.getCurrencyInstance(locale);
+    String formattedPrice = currencyFormatter.format(price);
+    return formattedPrice;
+}
+
+
+    public void setInfoTourOrder(Tour tour){
+        this.tourOrder = tour;
+      this.infoTourOrder.setNameTour(tour.getTitle());
+      this.infoTourOrder.setAddress("địa chỉ:"+tour.getAddress());
+      this.infoTourOrder.setDateStart("ngày khởi hành:"+tour.getTime_book_start().toString());
+      this.infoTourOrder.setDateEnd("ngày kết thúc:"+tour.getTime_book_end().toString());
+      this.infoTourOrder.setDesciption("<html>"+ "mô tả:"+tour.getDestination_description()+"</html>");
+      this.infoTourOrder.setImage(  App.globalPathApp + "\\Store_img\\" +tour.getImgUrl());
+      this.infoTourOrder.setPrice("giá:"+tour.getPrice_one_person()+"00 vnđ");
+      this.infoTourOrder.setQuantity(tour.getQuantity());
+      this.infoTourOrder.getButtonDelete().setVisible(false);
+      this.infoTourOrder.getButtonEdit().setVisible(false);
+      this.infoTourOrder.getButtonOrder().setVisible(false);
+        totalPerson1.setText("1");
+             Double totalPriceOrder = tourOrder.getPrice_one_person();
+              totalPrice.setText(formatPrice(totalPriceOrder));
+              
+      
+      
+    }
+    private void setInforOrder(){
+        order.setOrderid(RandomIdGenerator.generateRandomId());
+        order.setCreate_by(App.status.getUserName());
+        Date sqlDate = new Date(System.currentTimeMillis());
+    
+        order.setTime_book(sqlDate);
+        dateCreate.setText(order.getTime_book().toString());
+        createBy.setText(order.getCreate_by());
+        idOrder.setText(order.getOrderid());
+    }
+   private void setEventQuantityInput() {
+    this.quantity.addFocusListener(new FocusListener() {
+        @Override
+        public void focusGained(FocusEvent e) {
+            errorQuantity.setText("");
+        }
+
+        @Override
+        public void focusLost(FocusEvent e) {
+            String inputValue = quantity.getText().trim();
+            if (inputValue.isEmpty()) {
+                errorQuantity.setText("Không được để trống!");
+                errorQuantity.setForeground(Color.RED);
+                isValid = false;
+            } else if (!CheckError.isNumber(inputValue)) {
+                errorQuantity.setText("Không hợp lệ!");
+                errorQuantity.setForeground(Color.RED);
+                isValid = false;
+            } else {
+                isValid = true;
+                int quantityValue = Integer.parseInt(inputValue);
+                totalPerson1.setText(inputValue);
+                String totalPriceValue = tourOrder.getPrice_one_person() * quantityValue +"";
+                String totalPriceOrder = totalPriceValue + ".00 vnđ"; // Is this the correct format?
+                totalPrice.setText(totalPriceOrder);
+            }
+        }
+    });
+}
+   private void setEventInputNameCustomer() {
+    this.nameCustomer.addFocusListener(new FocusListener() {
+        @Override
+        public void focusGained(FocusEvent e) {
+            errorQuantity.setText("");
+        }
+
+        @Override
+        public void focusLost(FocusEvent e) {
+            String inputValue = nameCustomer.getText().trim();
+            if (inputValue.isEmpty()) {
+                errorName.setText("Không được để trống!");
+                errorName.setForeground(Color.RED);
+                isValid = false;
+            }else {
+                isValid = true;
+              
+            }
+        }
+    });
+}
+   private void setEventInputPhoneCustomer() {
+    this.phoneCustomer.addFocusListener(new FocusListener() {
+        @Override
+        public void focusGained(FocusEvent e) {
+            errorQuantity.setText("");
+        }
+
+        @Override
+        public void focusLost(FocusEvent e) {
+            String inputValue = phoneCustomer.getText().trim();
+            if (inputValue.isEmpty()) {
+                errorName.setText("Không được để trống!");
+                errorName.setForeground(Color.RED);
+                isValid = false;
+            }else if (!CheckError.isNumber(inputValue)) {
+                errorQuantity.setText("Không hợp lệ!");
+                errorQuantity.setForeground(Color.RED);
+                isValid = false;
+            }
+            
+            else {
+                isValid = true;
+              
+            }
+        }
+    });
+}
+      private void setEventInputAddressCustomer() {
+    this.address.addFocusListener(new FocusListener() {
+        @Override
+        public void focusGained(FocusEvent e) {
+            errorQuantity.setText("");
+        }
+
+        @Override
+        public void focusLost(FocusEvent e) {
+            String inputValue =  address.getText().trim();
+            if (inputValue.isEmpty()) {
+                errorName.setText("Không được để trống!");
+                errorName.setForeground(Color.RED);
+                isValid = false;
+            }
+            
+            else {
+                isValid = true;
+              
+            }
+        }
+    });
+}
   public ButtonRadius getButtonCancel() {
    return  this.buttonCancel;
   }
@@ -47,6 +203,18 @@ public class FormOrderTour extends javax.swing.JFrame {
     });
     
   }
+  private void  setEventButtonPayment(){
+     this.buttonPayment.addActionListener(new ActionListener(){
+         @Override
+         public void actionPerformed(ActionEvent e) {
+             if(isValid) {
+               order.setTourid(tourOrder.getTour_id());
+               
+             }
+         }
+     
+     });
+  }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -60,32 +228,33 @@ public class FormOrderTour extends javax.swing.JFrame {
     private void initComponents() {
 
         infoTour = new javax.swing.JPanel();
+        infoTourOrder = new GUI.components.CartItem();
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        quantity = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         jLabel6 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        address = new javax.swing.JTextField();
         jSeparator2 = new javax.swing.JSeparator();
-        jTextField3 = new javax.swing.JTextField();
+        nameCustomer = new javax.swing.JTextField();
         jSeparator3 = new javax.swing.JSeparator();
         jLabel7 = new javax.swing.JLabel();
         errorQuantity = new javax.swing.JLabel();
         errorAddress = new javax.swing.JLabel();
         errorName = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
-        totalPerson = new javax.swing.JLabel();
+        createBy = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
-        totalPerson2 = new javax.swing.JLabel();
+        idOrder = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
-        totalPerson3 = new javax.swing.JLabel();
+        dateCreate = new javax.swing.JLabel();
         buttonCancel = new GUI.components.ButtonRadius();
         jSeparator4 = new javax.swing.JSeparator();
         jSeparator5 = new javax.swing.JSeparator();
         jSeparator6 = new javax.swing.JSeparator();
         jLabel14 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
+        phoneCustomer = new javax.swing.JTextField();
         jSeparator7 = new javax.swing.JSeparator();
         errorPhone = new javax.swing.JLabel();
         buttonPayment = new GUI.components.ButtonRadius();
@@ -102,6 +271,8 @@ public class FormOrderTour extends javax.swing.JFrame {
         infoTour.setBackground(new java.awt.Color(255, 255, 255));
         infoTour.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         infoTour.setLayout(new java.awt.CardLayout());
+        infoTour.add(infoTourOrder, "card2");
+
         getContentPane().add(infoTour, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 30, 440, 320));
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
@@ -112,11 +283,11 @@ public class FormOrderTour extends javax.swing.JFrame {
         jLabel2.setText("Thông tin đăng ký tour");
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 620, 30));
 
-        jTextField1.setFont(new java.awt.Font("JetBrains Mono NL Medium", 0, 14)); // NOI18N
-        jTextField1.setForeground(new java.awt.Color(153, 153, 153));
-        jTextField1.setText("1");
-        jTextField1.setBorder(null);
-        jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 240, 190, 30));
+        quantity.setFont(new java.awt.Font("JetBrains Mono NL Medium", 0, 14)); // NOI18N
+        quantity.setForeground(new java.awt.Color(153, 153, 153));
+        quantity.setText("1");
+        quantity.setBorder(null);
+        jPanel1.add(quantity, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 240, 190, 30));
 
         jLabel5.setBackground(new java.awt.Color(255, 255, 255));
         jLabel5.setFont(new java.awt.Font("JetBrains Mono", 0, 14)); // NOI18N
@@ -133,22 +304,21 @@ public class FormOrderTour extends javax.swing.JFrame {
         jLabel6.setText("số người đăng ký:");
         jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 250, -1, 20));
 
-        jTextField2.setFont(new java.awt.Font("JetBrains Mono NL Medium", 0, 14)); // NOI18N
-        jTextField2.setForeground(new java.awt.Color(153, 153, 153));
-        jTextField2.setText("tp.hcm");
-        jTextField2.setBorder(null);
-        jPanel1.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 170, 590, 30));
+        address.setFont(new java.awt.Font("JetBrains Mono NL Medium", 0, 14)); // NOI18N
+        address.setForeground(new java.awt.Color(153, 153, 153));
+        address.setText(" ");
+        address.setBorder(null);
+        jPanel1.add(address, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 170, 590, 30));
 
         jSeparator2.setBackground(new java.awt.Color(0, 0, 0));
         jSeparator2.setForeground(new java.awt.Color(0, 0, 0));
         jSeparator2.setPreferredSize(new java.awt.Dimension(50, 5));
         jPanel1.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 200, 590, 20));
 
-        jTextField3.setFont(new java.awt.Font("JetBrains Mono NL Medium", 0, 14)); // NOI18N
-        jTextField3.setForeground(new java.awt.Color(153, 153, 153));
-        jTextField3.setText("nguyen van a");
-        jTextField3.setBorder(null);
-        jPanel1.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, 280, 30));
+        nameCustomer.setFont(new java.awt.Font("JetBrains Mono NL Medium", 0, 14)); // NOI18N
+        nameCustomer.setForeground(new java.awt.Color(153, 153, 153));
+        nameCustomer.setBorder(null);
+        jPanel1.add(nameCustomer, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, 280, 30));
 
         jSeparator3.setBackground(new java.awt.Color(0, 0, 0));
         jSeparator3.setForeground(new java.awt.Color(0, 0, 0));
@@ -168,24 +338,24 @@ public class FormOrderTour extends javax.swing.JFrame {
         jLabel11.setText("Họ&Tên");
         jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, -1, -1));
 
-        totalPerson.setText("nhan vien a");
-        jPanel1.add(totalPerson, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 370, 300, 30));
+        createBy.setText("nhan vien a");
+        jPanel1.add(createBy, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 370, 300, 30));
 
         jLabel12.setBackground(new java.awt.Color(255, 255, 255));
         jLabel12.setFont(new java.awt.Font("JetBrains Mono", 0, 14)); // NOI18N
-        jLabel12.setText("Hóa đơn số:");
-        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 300, -1, 30));
+        jLabel12.setText("   Mã hóa đơn:");
+        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(-7, 300, 130, 30));
 
-        totalPerson2.setText("sdfjlsdjflsd");
-        jPanel1.add(totalPerson2, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 290, 300, 30));
+        idOrder.setText("sdfjlsdjflsd");
+        jPanel1.add(idOrder, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 290, 300, 30));
 
         jLabel13.setBackground(new java.awt.Color(255, 255, 255));
         jLabel13.setFont(new java.awt.Font("JetBrains Mono", 0, 14)); // NOI18N
         jLabel13.setText("Ngày tạo:");
         jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 330, -1, 30));
 
-        totalPerson3.setText("06/21/2344");
-        jPanel1.add(totalPerson3, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 330, 310, 30));
+        dateCreate.setText("06/21/2344");
+        jPanel1.add(dateCreate, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 330, 310, 30));
 
         buttonCancel.setBackground(new java.awt.Color(255, 128, 146));
         buttonCancel.setText("  Thoát");
@@ -214,11 +384,10 @@ public class FormOrderTour extends javax.swing.JFrame {
         jLabel14.setText("Địa chỉ");
         jPanel1.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, -1, 20));
 
-        jTextField4.setFont(new java.awt.Font("JetBrains Mono NL Medium", 0, 14)); // NOI18N
-        jTextField4.setForeground(new java.awt.Color(153, 153, 153));
-        jTextField4.setText("0123456778");
-        jTextField4.setBorder(null);
-        jPanel1.add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 60, 280, 30));
+        phoneCustomer.setFont(new java.awt.Font("JetBrains Mono NL Medium", 0, 14)); // NOI18N
+        phoneCustomer.setForeground(new java.awt.Color(153, 153, 153));
+        phoneCustomer.setBorder(null);
+        jPanel1.add(phoneCustomer, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 60, 280, 30));
 
         jSeparator7.setBackground(new java.awt.Color(0, 0, 0));
         jSeparator7.setForeground(new java.awt.Color(0, 0, 0));
@@ -267,13 +436,18 @@ public class FormOrderTour extends javax.swing.JFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField address;
     private GUI.components.ButtonRadius buttonCancel;
     private GUI.components.ButtonRadius buttonPayment;
+    private javax.swing.JLabel createBy;
+    private javax.swing.JLabel dateCreate;
     private javax.swing.JLabel errorAddress;
     private javax.swing.JLabel errorName;
     private javax.swing.JLabel errorPhone;
     private javax.swing.JLabel errorQuantity;
+    private javax.swing.JLabel idOrder;
     private javax.swing.JPanel infoTour;
+    private GUI.components.CartItem infoTourOrder;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
@@ -294,14 +468,10 @@ public class FormOrderTour extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator5;
     private javax.swing.JSeparator jSeparator6;
     private javax.swing.JSeparator jSeparator7;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JLabel totalPerson;
+    private javax.swing.JTextField nameCustomer;
+    private javax.swing.JTextField phoneCustomer;
+    private javax.swing.JTextField quantity;
     private javax.swing.JLabel totalPerson1;
-    private javax.swing.JLabel totalPerson2;
-    private javax.swing.JLabel totalPerson3;
     private javax.swing.JLabel totalPrice;
     // End of variables declaration//GEN-END:variables
 }

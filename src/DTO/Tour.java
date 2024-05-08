@@ -19,16 +19,17 @@ public class Tour {
     private String create_by;
     private double expense;
     public void setQuantity(int  t)
-    { this.quantity = t;}
-    public  int getQuantity(){ return quantity;}
+    {
+        this.quantity = t;}
+    public  int getQuantity(){ return this.quantity;}
     public void setExpense(double i) {
-       expense =i;
+       this.expense =i;
     }
     public double getExpense() {
-     return expense;
+     return this.expense;
     }
      public void setImgUrl(String url) {
-      imgUrl = url;
+      this.imgUrl = url;
      }
      public String getImgUrl(){
        return this.imgUrl;
@@ -86,7 +87,7 @@ public class Tour {
         this.time_book_start = time_book_start;
     }
     public Date getTime_book_start() {
-        return time_book_start;
+        return this.time_book_start;
     }
 
 
