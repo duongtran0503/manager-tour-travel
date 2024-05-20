@@ -4,6 +4,8 @@
  */
 package DAL;
 
+import DTO.Orders;
+import DTO.Payment;
 import java.util.ArrayList;
 
 /**
@@ -103,6 +105,12 @@ public class QLTourDAL {
            stmt = conn.prepareStatement(sql);
            stmt.setString(1, tour_id);
            stmt.execute();
+           String SqlDeleteOrder = "DELETE orders, payments FROM orders " +
+                                            "INNER JOIN payments ON payments.orderId = orders.orderId " +
+                                            "WHERE orders.tourId = ?";
+             stmt = conn.prepareStatement(SqlDeleteOrder);
+           stmt.setString(1, tour_id);
+           stmt.execute();
             System.out.println("delete  Tour success");
             return true;
         } catch (SQLException e) {
@@ -181,5 +189,55 @@ public class QLTourDAL {
       }
      return result;
     }
-             
+   public boolean addOrder(Orders order, int QuantityTour,Payment pay) {
+    Connection conn = null;
+    PreparedStatement stmt = null;
+    try {
+        conn = this.db.connectDb();
+
+        
+        String sql = "INSERT INTO orders (orderId, tourId, price, totalPrice, name_user_order, address, phone, create_by) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+        stmt = conn.prepareStatement(sql);
+        stmt.setString(1, order.getOrderid());
+        stmt.setString(2, order.getTourid());
+        stmt.setDouble(3, order.getPrice());
+        stmt.setDouble(4, order.getTotalPrice());
+        stmt.setString(5, order.getNameUser());
+        stmt.setString(6, order.getAddress());
+        stmt.setString(7, order.getPhone());
+        stmt.setString(8, order.getCreate_by());
+        stmt.executeUpdate();
+
+        
+       
+       
+        String sqlUpdateTour = "UPDATE tours SET quantity = ? WHERE tour_id = ?";
+        stmt = conn.prepareStatement(sqlUpdateTour);
+        stmt.setInt(1, QuantityTour - order.getQuantity());
+        stmt.setString(2, order.getTourid());
+        stmt.executeUpdate();
+        String sqlAddpayment  =  "INSERT INTO payments (paymentId,userid,orderId,quantity,price) VALUES (?,?,?,?,?)";
+        stmt = conn.prepareStatement(sqlAddpayment);
+        stmt.setString(1, pay.getPaymentid());
+        stmt.setString(2, pay.getUserid());
+        stmt.setString(3, pay.getOrderid());
+        stmt.setInt(4, pay.getNumber());
+        stmt.setDouble(5, pay.getPrice());
+        stmt.execute();
+        return true;
+
+    } catch (SQLException e) {
+        e.printStackTrace();  
+    } finally {
+       
+        try {
+            if (stmt != null) stmt.close();
+            if (conn != null) conn.close();
+        } catch (SQLException e) {
+            e.printStackTrace();  // Log the exception
+        }
+    }
+    return false;
+}
+
 }

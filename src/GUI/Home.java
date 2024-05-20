@@ -4,7 +4,6 @@
  */
 package GUI;
 
-import GUI.components.MainForm;
 import java.awt.Color;
 import javax.swing.ImageIcon;
 import javax.swing.JTabbedPane;

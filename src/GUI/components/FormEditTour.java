@@ -16,11 +16,11 @@ import javax.swing.JOptionPane;
 import DTO.Tour;
 import BUS.ObjectType.MessageDAL;
 import BUS.QLTourBUS;
-import java.awt.Component;
 import java.io.File;
 import javax.swing.JFileChooser;
 import javax.swing.SwingUtilities;
 import GUI.App;
+import GUI.panel.TourDuLich;
 import java.awt.Image;
 import java.awt.MediaTracker;
 import java.awt.image.BufferedImage;
@@ -66,6 +66,7 @@ public class FormEditTour extends javax.swing.JFrame {
      *
      * @param tour 
      */
+
     public void setValueEdit(Tour tour) {
        inputName.setText(tour.getTitle());
        iinputAddress.setText(tour.getAddress());
@@ -261,7 +262,7 @@ public class FormEditTour extends javax.swing.JFrame {
                  MessageDAL state  = qLTourBUS.updateTour(tourData);
                  if(state.getStatus()) {
                    JOptionPane.showMessageDialog(null, state.getMessage(),"thông báo", JOptionPane.INFORMATION_MESSAGE);
-                  
+                     TourDuLich.instance.getButtonRefresh().doClick();
                      dispose();
                  
                  } else {

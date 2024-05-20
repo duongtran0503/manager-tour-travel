@@ -175,8 +175,6 @@ public class Menu extends javax.swing.JPanel {
         jLabel4 = new javax.swing.JLabel();
         panelRadius4 = new GUI.components.PanelRadius();
         panelRadius5 = new GUI.components.PanelRadius();
-        panelRadius6 = new GUI.components.PanelRadius();
-        panelRadius7 = new GUI.components.PanelRadius();
         panelRadius8 = new GUI.components.PanelRadius();
         jLabel1 = new javax.swing.JLabel();
 
@@ -261,14 +259,6 @@ public class Menu extends javax.swing.JPanel {
 
         jPanel2.add(panelRadius4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 160, 200, 35));
 
-        panelRadius6.setBackground(new java.awt.Color(255, 255, 255));
-        panelRadius6.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        jPanel2.add(panelRadius6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 210, 200, 35));
-
-        panelRadius7.setBackground(new java.awt.Color(255, 255, 255));
-        panelRadius7.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        jPanel2.add(panelRadius7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 260, 200, 35));
-
         panelRadius8.setBackground(new java.awt.Color(51, 51, 51));
         panelRadius8.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -328,8 +318,6 @@ public class Menu extends javax.swing.JPanel {
     private GUI.components.PanelRadius panelRadius3;
     private GUI.components.PanelRadius panelRadius4;
     private GUI.components.PanelRadius panelRadius5;
-    private GUI.components.PanelRadius panelRadius6;
-    private GUI.components.PanelRadius panelRadius7;
     private GUI.components.PanelRadius panelRadius8;
     // End of variables declaration//GEN-END:variables
 }

@@ -7,7 +7,8 @@ package BUS;
 import DAL.QLTourDAL;
 import DTO.Tour;
 import java.util.ArrayList;
-
+import  DTO.Orders;
+import DTO.Payment;
 /**
  *
  * @author ACER
@@ -67,5 +68,25 @@ public class QLTourBUS {
     public ArrayList<Tour> searchTour(String key) {
       ArrayList<Tour> result = this.qltdal.searchTours(key);
       return result;
+    }
+    public ObjectType.MessageDAL AddOrder(Orders order,int quantityTour){
+      ObjectType.MessageDAL  message =   new  ObjectType.MessageDAL();
+         Payment pay  = new Payment();
+         pay.setPaymentid(RandomIdGenerator.generateRandomId()
+         );
+         pay.setOrderid(order.getOrderid());
+         pay.setUserid(RandomIdGenerator.generateRandomId());
+         pay.setPrice(order.getPrice());
+         pay.setNumber(order.getQuantity());
+      boolean add = this.qltdal.addOrder(order,quantityTour,pay);
+      if(add) {
+       message.setStatus(add);
+       message.setMessage("đặt chổ thành công!");
+      }
+      else {
+           message.setStatus(add);
+       message.setMessage("đặt chổ không  thành công!");
+      }
+      return message;
     }
  }

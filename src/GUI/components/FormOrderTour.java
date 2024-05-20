@@ -5,10 +5,13 @@
 package GUI.components;
 
 import BUS.CheckError;
+import BUS.ObjectType;
+import BUS.QLTourBUS;
 import BUS.RandomIdGenerator;
 import DTO.Orders;
 import DTO.Tour;
 import GUI.App;
+import GUI.panel.TourDuLich;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -18,7 +21,6 @@ import java.util.Date;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import java.text.NumberFormat;
-import java.util.Locale;
 /**
  *
  * @author ACER
@@ -31,7 +33,9 @@ public class FormOrderTour extends javax.swing.JFrame {
     private Tour tourOrder;
     private Orders order =new Orders();
       private boolean isValid = false;
+      private QLTourBUS qltbus ;
     public FormOrderTour() {
+        this.qltbus = new  QLTourBUS();
         initComponents();
         addEventButtonCancel();
       setInforOrder();
@@ -39,12 +43,12 @@ public class FormOrderTour extends javax.swing.JFrame {
         setEventInputNameCustomer();
         setEventInputPhoneCustomer();
         setEventInputAddressCustomer();
+        setEventButtonPayment();
     }
 private String formatPrice(Double price) {
-    Locale locale = new Locale("vi", "VN");
-    NumberFormat currencyFormatter = NumberFormat.getCurrencyInstance(locale);
-    String formattedPrice = currencyFormatter.format(price);
-    return formattedPrice;
+ 
+String moneyString =  String.format("%,.2f", price);
+    return moneyString;
 }
 
 
@@ -56,7 +60,8 @@ private String formatPrice(Double price) {
       this.infoTourOrder.setDateEnd("ngày kết thúc:"+tour.getTime_book_end().toString());
       this.infoTourOrder.setDesciption("<html>"+ "mô tả:"+tour.getDestination_description()+"</html>");
       this.infoTourOrder.setImage(  App.globalPathApp + "\\Store_img\\" +tour.getImgUrl());
-      this.infoTourOrder.setPrice("giá:"+tour.getPrice_one_person()+"00 vnđ");
+      double price = tour.getPrice_one_person();
+      this.infoTourOrder.setPrice("giá:"+formatPrice(price)+"đ");
       this.infoTourOrder.setQuantity(tour.getQuantity());
       this.infoTourOrder.getButtonDelete().setVisible(false);
       this.infoTourOrder.getButtonEdit().setVisible(false);
@@ -96,13 +101,19 @@ private String formatPrice(Double price) {
                 errorQuantity.setText("Không hợp lệ!");
                 errorQuantity.setForeground(Color.RED);
                 isValid = false;
-            } else {
+            } else if(Integer.parseInt(inputValue)>tourOrder.getQuantity()){
+                 errorQuantity.setText("Số lương không hợp lệ!");
+                errorQuantity.setForeground(Color.RED);
+                isValid = false;
+            }
+            
+            else {
                 isValid = true;
                 int quantityValue = Integer.parseInt(inputValue);
                 totalPerson1.setText(inputValue);
                 String totalPriceValue = tourOrder.getPrice_one_person() * quantityValue +"";
-                String totalPriceOrder = totalPriceValue + ".00 vnđ"; // Is this the correct format?
-                totalPrice.setText(totalPriceOrder);
+                String totalPriceOrder = formatPrice(Double.valueOf(totalPriceValue)); // Is this the correct format?
+                totalPrice.setText(totalPriceOrder +"đ");
             }
         }
     });
@@ -111,7 +122,7 @@ private String formatPrice(Double price) {
     this.nameCustomer.addFocusListener(new FocusListener() {
         @Override
         public void focusGained(FocusEvent e) {
-            errorQuantity.setText("");
+            errorName.setText("");
         }
 
         @Override
@@ -132,19 +143,19 @@ private String formatPrice(Double price) {
     this.phoneCustomer.addFocusListener(new FocusListener() {
         @Override
         public void focusGained(FocusEvent e) {
-            errorQuantity.setText("");
+            errorPhone.setText("");
         }
 
         @Override
         public void focusLost(FocusEvent e) {
             String inputValue = phoneCustomer.getText().trim();
             if (inputValue.isEmpty()) {
-                errorName.setText("Không được để trống!");
-                errorName.setForeground(Color.RED);
+                errorPhone.setText("Không được để trống!");
+                errorPhone.setForeground(Color.RED);
                 isValid = false;
-            }else if (!CheckError.isNumber(inputValue)) {
-                errorQuantity.setText("Không hợp lệ!");
-                errorQuantity.setForeground(Color.RED);
+            }else if (!CheckError.isNumber(inputValue) && Integer.parseInt(inputValue)>11) {
+                errorPhone.setText("Không hợp lệ!");
+                errorPhone.setForeground(Color.RED);
                 isValid = false;
             }
             
@@ -159,15 +170,16 @@ private String formatPrice(Double price) {
     this.address.addFocusListener(new FocusListener() {
         @Override
         public void focusGained(FocusEvent e) {
-            errorQuantity.setText("");
+            errorAddress
+                    .setText("");
         }
 
         @Override
         public void focusLost(FocusEvent e) {
             String inputValue =  address.getText().trim();
             if (inputValue.isEmpty()) {
-                errorName.setText("Không được để trống!");
-                errorName.setForeground(Color.RED);
+                errorAddress.setText("Không được để trống!");
+                errorAddress.setForeground(Color.RED);
                 isValid = false;
             }
             
@@ -209,7 +221,26 @@ private String formatPrice(Double price) {
          public void actionPerformed(ActionEvent e) {
              if(isValid) {
                order.setTourid(tourOrder.getTour_id());
-               
+                 System.out.println("ordder");
+                 Orders order = new  Orders();
+                 order.setNameUser(nameCustomer.getText().trim());
+                 order.setAddress(address.getText().trim());
+                  int quantityValue = Integer.parseInt(quantity.getText());
+                 order.setQuantity(quantityValue);
+                double totalPriceValue = tourOrder.getPrice_one_person() * quantityValue;
+                order.setPrice(tourOrder.getPrice_one_person());
+                 order.setTotalPrice(totalPriceValue);
+                 order.setPhone(phoneCustomer.getText());
+                 order.setTourid(tourOrder.getTour_id());
+                 order.setCreate_by(App.status.getUserName());
+                 ObjectType.MessageDAL message = qltbus.AddOrder(order,tourOrder.getQuantity());
+                 if(message.getStatus()) {
+                  JOptionPane.showMessageDialog(null, message.getMessage());
+                     TourDuLich.instance.getButtonRefresh().doClick();
+                  dispose();
+                 } else  {
+                   JOptionPane.showMessageDialog(null, message.getMessage());
+                 }
              }
          }
      

@@ -12,7 +12,8 @@ import java.awt.Font;
 
 import java.awt.Image;
 import java.awt.MediaTracker;
-
+import java.util.Locale;
+import GUI.App;
 
 
 
@@ -37,6 +38,25 @@ public class CartItem extends javax.swing.JPanel {
         initComponents();
      
       
+    }
+    public String formatPrice(Double price) {
+    java.text.NumberFormat formatter = java.text.NumberFormat.getCurrencyInstance(new Locale("vi", "VN"));
+    String formattedPrice = formatter.format(price*1000);
+  
+    formattedPrice = formattedPrice.replace("₫", "").trim() + " ₫";
+    return formattedPrice;
+}
+    public void setInfo(Tour tour){
+        jLabel2.setText( "Tên Tour:"+tour.getTitle());
+        jLabel1.setText(formatPrice(tour.getPrice_one_person()));
+         jLabel1.setForeground(Color.red);
+     jLabel1.setFont(new Font("Serif", Font.BOLD, 14));
+       jLabel5.setText("<html>"+"Địa chỉ:"+tour.getAddress()+"</html>");
+        setDesciption("<html>"+"Mô tả:"+tour.getDestination_description()+"</html>");
+        setImage(App.globalPathApp+  "\\Store_img\\"+tour.getImgUrl());
+        setDateStart("Thời gian bắt đầu:"+tour.getTime_book_start().toString());
+        setDateEnd("Thời gian kết thúc:"+tour.getTime_book_end().toString());
+        setQuantity(tour.getQuantity());
     }
     public void setTour(Tour tour) {
       this.tour = tour;
@@ -100,7 +120,7 @@ public class CartItem extends javax.swing.JPanel {
       dateEnd.setText(t);
     }
     public  void setQuantity(int i) {
-        quantity.setText("số chổ còn lại:"+i);
+        quantity.setText("số chổ :"+i);
     }
     public  ButtonRadius getButtonDelete() {
      return this.buttonDelete;
@@ -132,7 +152,7 @@ public class CartItem extends javax.swing.JPanel {
         setBackground(new java.awt.Color(255, 255, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        buttonRadius1.setText("buttonRadius1");
+        buttonRadius1.setText("no image");
         buttonRadius1.setBorderColor(new java.awt.Color(0, 0, 0));
         buttonRadius1.setRadius(20);
         add(buttonRadius1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 170, 170));
@@ -143,19 +163,19 @@ public class CartItem extends javax.swing.JPanel {
         jLabel1.setText(" price");
         panelRadius1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 190, 150, 30));
 
-        jLabel2.setText("name:");
+        jLabel2.setText("name: không có thông tin");
         panelRadius1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(15, 4, 170, 40));
 
-        dateEnd.setText("Ngày kết thúc");
+        dateEnd.setText("Ngày kết thúc:không có thông tin");
         panelRadius1.add(dateEnd, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 170, 180, 20));
 
-        jLabel4.setText("mô tả");
+        jLabel4.setText("mô tảkhông có thông tin");
         panelRadius1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, 180, 50));
 
-        jLabel5.setText(" Address:");
+        jLabel5.setText(" Address:không có thông tin");
         panelRadius1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 180, 40));
 
-        dateStart.setText("Ngày bắt đầu:");
+        dateStart.setText("Ngày bắt đầu:không có thông tin");
         panelRadius1.add(dateStart, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, 180, 20));
 
         add(panelRadius1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 10, 200, 230));

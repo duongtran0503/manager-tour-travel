@@ -22,6 +22,7 @@ import javax.swing.JOptionPane;
 import BUS.ObjectType.MessageDAL;
 import GUI.components.FormEditTour;
 import GUI.components.FormOrderTour;
+import javax.swing.JButton;
 
 /**
  *
@@ -33,7 +34,9 @@ public class TourDuLich extends javax.swing.JPanel  {
      * Creates new form TourDuLich
      */
     private final QLTourBUS qltbus;
+    public static TourDuLich instance =null;
     public TourDuLich() {
+        instance = this;
         qltbus = new QLTourBUS();
         initComponents();
         addValueTable();
@@ -90,7 +93,7 @@ public class TourDuLich extends javax.swing.JPanel  {
              
              int result = JOptionPane.showConfirmDialog(null, "xóa tour:"+cart.getName(),"thông báo", JOptionPane.YES_NO_OPTION);
              if(result ==JOptionPane.YES_OPTION) {
-               MessageDAL state = qltbus.deleteTour(cart.getCartId());
+               MessageDAL state = qltbus.deleteTour(cart.getTour().getTour_id());
                 JOptionPane.showMessageDialog(null, state.getMessage());
                 if(state.getStatus()) {
                     addValueTable();
@@ -147,6 +150,11 @@ public class TourDuLich extends javax.swing.JPanel  {
     } 
    
     }
+      ///===================================================
+//     button   làm  moi giao dien
+    
+    
+    //=====================================================
     private void addEventButtonRefresh(){
       buttonRefresh.addActionListener(new  ActionListener(){
         @Override
@@ -157,6 +165,11 @@ public class TourDuLich extends javax.swing.JPanel  {
       });
       
     }
+      ///===================================================
+//    view    reuslt search
+    
+    
+    //=====================================================
       private  void searchResult(ArrayList<Tour> lists) {
       
     jPanel2.removeAll();
@@ -223,13 +236,21 @@ public class TourDuLich extends javax.swing.JPanel  {
        
         jPanel2.add(cart); 
       
-    } 
     }
+     jPanel2.revalidate();
+        jPanel2.repaint();
+    }
+            ///===================================================
+//     search
+    
+    
+    //=====================================================
     private void addEventButtonSearch()  {
        buttonSearch.addActionListener(new  ActionListener(){
            @Override
            public void actionPerformed(ActionEvent e) {
                String keySearch = inputSearch.getText();
+               if(keySearch.length()==0) {buttonRefresh.doClick(); return;}
                if(keySearch.length() !=0) {
                    ArrayList <Tour> result = qltbus.searchTour(keySearch);
                    if(result.isEmpty()) {
@@ -243,7 +264,9 @@ public class TourDuLich extends javax.swing.JPanel  {
        });
        
     }
-  
+  public GUI.components.ButtonRadius getButtonRefresh(){
+    return  this.buttonRefresh;
+  }  
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {

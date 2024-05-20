@@ -21,6 +21,7 @@ import java.io.File;
 import javax.swing.JFileChooser;
 import javax.swing.SwingUtilities;
 import GUI.App;
+import GUI.panel.TourDuLich;
 import java.awt.Image;
 import java.awt.MediaTracker;
 import java.awt.image.BufferedImage;
@@ -39,7 +40,7 @@ public class FormAddTour extends javax.swing.JFrame {
     /**
      * Creates new form FormAddTour
      */
-    private QLTourBUS qLTourBUS;
+    private final QLTourBUS qLTourBUS;
     private boolean isValid = false;
     private  java.sql.Date dStart ;
       private  java.sql.Date dEnd ;
@@ -215,9 +216,9 @@ public class FormAddTour extends javax.swing.JFrame {
      buttonSubmit.addActionListener(new ActionListener(){
          @Override
          public void actionPerformed(ActionEvent e) {
-             if(isValid) {
+             if(isValid && nameImage.length()!=0) {
                  Tour tour = new Tour();
-                 String valueInputPrice = inputQuantity.getText();
+                 String valueInputPrice = inputPrice_on_one_persion1.getText();
                  String valueInputExpense = inpuExpense.getText();
                  double price_one_person = Double.parseDouble(valueInputPrice);
                  double expense = Double.parseDouble(valueInputExpense);
@@ -228,12 +229,13 @@ public class FormAddTour extends javax.swing.JFrame {
                  tour.setTime_book_start(dStart);
                  tour.setPrice_one_person(price_one_person);
                  tour.setExpense(expense);
+                
                  tour.setImgUrl(nameImage);
                  tour.setQuantity(Integer.parseInt(inputQuantity.getText()));
                  MessageDAL state  = qLTourBUS.createNewTour(tour);
                  if(state.getStatus()) {
                    JOptionPane.showMessageDialog(null, state.getMessage(),"thông báo", JOptionPane.INFORMATION_MESSAGE);
-                  
+                     TourDuLich.instance.getButtonRefresh().doClick();
                      dispose();
                  
                  } else {
@@ -287,6 +289,7 @@ public class FormAddTour extends javax.swing.JFrame {
                     image =ImageIO.read(file);
                     Image img = image.getScaledInstance(280, 300, Image.SCALE_SMOOTH);
                     previewImgae.setIcon(new ImageIcon(img));
+                  
                  }
                 catch(IOException exception) {
                     System.out.println("lỗi đọc file ảnh");
